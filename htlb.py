@@ -5,6 +5,9 @@ import pandas as pd
 class HLTB_Spider(scrapy.Spider):
 	name = 'hltb_spider'
 
+class HLTB_Game_Spider(scrapy.Spider):
+	name = 'hltb_game_spider'
+
 	def start_requests(self):
 		min_page = 1
 		max_page = 1996
@@ -99,6 +102,7 @@ all_games_df = pd.DataFrame()
 
 process = CrawlerProcess()
 process.crawl(HLTB_Spider)
+process.crawl(HLTB_Game_Spider)
 process.start()
 
 # trier par titre et réinitialiser l'index
