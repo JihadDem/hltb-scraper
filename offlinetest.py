@@ -46,11 +46,13 @@ def parse_game(sel):
 	time_times = all_times.xpath('./div/text()').extract()
 	
 	time_times = [s.strip().replace('--', 'NA').replace('½', '.5') for s in time_times]
+	time_times = [s.strip().replace('--', '').replace('½', '.5') for s in time_times]
 	
 	time_times = [str(float(s.split(' ')[0]) / 60.0) if 'Mins' in s else s.split(' ')[0] for s in time_times]
 	names_times = dict(zip(time_names, time_times))
 	for key in ['Main Story', 'Main + Extras', 'Completionist', 'All Styles', 'Co-Op', 'Vs.']:
 		game_df[key] = names_times[key] if key in names_times else 'NA'
+		game_df[key] = names_times[key] if key in names_times else ''
 
 	profile = {
 		'Type': 'NA',
@@ -60,7 +62,15 @@ def parse_game(sel):
 		'Genres': 'NA', 
 		'NA': 'NA',
 		'EU': 'NA',
-		'JP': 'NA'
+		'JP': 'NA',
+		'Type': '',
+		'Developers': '', 
+		'Publishers': '', 
+		'Playable On': '',
+		'Genres': '', 
+		'NA': '',
+		'EU': '',
+		'JP': ''
 	}
 	profile_info = sel.css('div.profile_info')
 	for info in profile_info:
