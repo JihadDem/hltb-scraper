@@ -44,7 +44,7 @@ def parse_completions(sel):
 			print('Skipping unknown table:', title)
 
 	print(game_df.info())
-	game_df.to_csv('./completions/completions-test.csv', index=None)
+	game_df.to_csv(abspath('./completions/completions-test.csv'), index=None)
 	# print(game_df.platform.value_counts())
 	# print(game_df.time.value_counts())
 
